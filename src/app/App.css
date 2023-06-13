@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+.App {
+    color: #333333;
+    background: #F4F4F5;
+    width: 100%;
+    max-width: 1336px;
+    margin: 0 auto;
+    padding: 0 10px;
+    height: 100vh;
+}
+.App-container{
+    background: #FFFFFF;
+    border-radius: 12px 12px 0 0;
+    width: 100%;
+    max-width: 900px;
+    height: 704px;
+    margin: 0 auto;
+    padding: 25px;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
