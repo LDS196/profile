@@ -1,21 +1,19 @@
-.header{
-  display: flex;
-  gap: 0 24px ;
-  align-items: center;
-  margin-bottom: 24px;
+.header {
+    display: flex;
+    gap: 0 24px;
+    align-items: center;
+    margin-bottom: 24px;
 }
-.header__about{
-
-  h1{
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 26px;
-    margin-bottom: 10px;
-  }
+.header__about {
+    h1 {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 10px;
+    }
 }
-.line{
-  max-width: 852px;
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  margin-bottom: 24px;
+.line {
+    max-width: 852px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }

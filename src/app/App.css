@@ -5,15 +5,15 @@
 }
 .App {
     color: #333333;
-    background: #F4F4F5;
+    background: #f4f4f5;
     width: 100%;
     max-width: 1336px;
     margin: 0 auto;
     padding: 0 10px;
-    height: 100vh;
+    min-height: 2000px;
 }
-.App-container{
-    background: #FFFFFF;
+.App-container {
+    background: #ffffff;
     border-radius: 12px 12px 0 0;
     width: 100%;
     max-width: 900px;
@@ -33,4 +33,3 @@ button {
     border: none;
     cursor: pointer;
 }
-
