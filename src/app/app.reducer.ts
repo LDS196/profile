@@ -8,10 +8,10 @@ const initialState = {
         nickname: "",
         name: "",
         surname: "",
-        sex: "" as "man" | "woman",
+        sex: "",
         advantages: [] as string[],
         checkbox: [] as number[],
-        radio: [] as number[],
+        radio: null as null | number,
         about: "",
     },
 }
@@ -36,10 +36,10 @@ type ProfileData = {
     nickname?: string
     name?: string
     surname?: string
-    sex?: "man" | "woman"
+    sex?: string
     advantages?: string[]
     checkbox?: number[]
-    radio?: number[]
+    radio?: number
     about?: string
 }
 export const appReducer = slice.reducer

@@ -4,40 +4,43 @@ import { useForm } from "react-hook-form"
 import InputMask from "react-input-mask"
 import s from "./FormMainPage.module.scss"
 import Label from "../../Label/Label"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { appActions } from "../../../../app/app.reducer"
 import { extractNumbersFromString } from "../../../utils/extractNumbersFromString"
 import { useNavigate } from "react-router-dom"
+import { selectEmail, selectPhone } from "../../../../app/app.select"
 
-interface FormData {
+type FormData = {
     phone: string
     email: string
 }
+const textFieldStyle = {
+    fontFamily: "sans-serif",
+    padding: "13px",
+    fontWeight: 400,
+    fontSize: "14px",
+    lineHeight: "20px",
+}
 
 const FormMainPage = () => {
+    const defaultValues = {
+        phone: useSelector(selectPhone),
+        email: useSelector(selectEmail),
+    }
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { setProfileData } = appActions
-    const textFieldStyle = {
-        fontFamily: "sans-serif",
-        padding: "13px",
-        fontWeight: 400,
-        fontSize: "14px",
-        lineHeight: "20px",
-    }
+
     const {
         register,
         formState: { errors, isDirty, isValid },
         handleSubmit,
     } = useForm<FormData>({
-        defaultValues: {
-            phone: "",
-            email: "",
-        },
+        defaultValues: defaultValues,
         mode: "onChange" || "onTouched" || "onBlur",
     })
 
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = (data: FormData) => {
         const phone = extractNumbersFromString(data.phone)
         dispatch(setProfileData({ ...data, phone }))
         navigate("/personal-data")

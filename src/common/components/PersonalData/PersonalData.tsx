@@ -1,7 +1,12 @@
 import React from "react"
-
+import s from "./PersonalData.module.scss"
+import PersonalDataForm from "./PersonalDataForm/PersonalDataForm"
 const PersonalData = () => {
-    return <div>4444444444444</div>
+    return (
+        <div className={s.block}>
+            <PersonalDataForm />
+        </div>
+    )
 }
 
 export default PersonalData

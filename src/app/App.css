@@ -9,7 +9,7 @@
     width: 100%;
     max-width: 1336px;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 24px 10px 0 10px;
     min-height: 2000px;
 }
 .App-container {
@@ -17,7 +17,6 @@
     border-radius: 12px 12px 0 0;
     width: 100%;
     max-width: 900px;
-    height: 704px;
     margin: 0 auto;
     padding: 25px;
 }
