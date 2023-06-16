@@ -6,11 +6,12 @@ type Props = {
     title: string
     htmlFor: string
     subtitle?: string
+    maxWidth?: string
 }
 
-const Label = ({ htmlFor, subtitle, title, children }: Props) => {
+const Label = ({ htmlFor, subtitle, maxWidth, title, children }: Props) => {
     return (
-        <div className={s.inputBox}>
+        <div className={s.inputBox} style={{ maxWidth: maxWidth }}>
             <label htmlFor={htmlFor} className={s.label}>
                 {title}
             </label>

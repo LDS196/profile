@@ -1,5 +1,12 @@
 import axios from "axios"
+import { ProfileType, ResponseDataType } from "../types/types"
 
-export const instance = axios.create({
-    baseURL: "https://api.sbercloud.ru/content/v1/bootcamp/frontend",
+const instance = axios.create({
+    baseURL: "https://api.sbercloud.ru/content/v1/bootcamp",
 })
+
+export const appApi = {
+    sendProfile(data: ProfileType) {
+        return instance.post<ResponseDataType>("/frontend", data)
+    },
+}

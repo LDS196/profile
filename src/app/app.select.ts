@@ -1,6 +1,5 @@
 import { AppRootStateType } from "./store"
 
-export const selectError = (state: AppRootStateType) => state.app.error
 export const selectAbout = (state: AppRootStateType) => state.app.profile.about
 export const selectAdvantages = (state: AppRootStateType) => state.app.profile.advantages
 export const selectSex = (state: AppRootStateType) => state.app.profile.sex
@@ -11,3 +10,6 @@ export const selectNickName = (state: AppRootStateType) => state.app.profile.nic
 export const selectPhone = (state: AppRootStateType) => state.app.profile.phone
 export const selectRadio = (state: AppRootStateType) => state.app.profile.radio
 export const selectSurname = (state: AppRootStateType) => state.app.profile.surname
+export const selectAppError = (state: AppRootStateType) => state.app.error
+export const selectIsLoading = (state: AppRootStateType) => state.app.isLoading
+export const selectIsSuccessSubmitProfile = (state: AppRootStateType) => state.app.isSuccessSubmitProfile

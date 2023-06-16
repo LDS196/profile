@@ -1,10 +1,10 @@
 import React from "react"
-import { Button, MenuItem, TextField } from "@mui/material"
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 import { useForm } from "react-hook-form"
 import s from "./PersonalDataForm.module.scss"
 import { useDispatch, useSelector } from "react-redux"
 import { appActions } from "../../../../app/app.reducer"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Label from "../../Label/Label"
 import { selectName, selectNickName, selectSex, selectSurname } from "../../../../app/app.select"
 
@@ -17,13 +17,6 @@ type FormData = {
 
 const gender = ["man", "women"]
 
-const textFieldStyle = {
-    fontFamily: "sans-serif",
-    padding: "13px",
-    fontWeight: 400,
-    fontSize: "14px",
-    lineHeight: "20px",
-}
 const PersonalDataForm = () => {
     const defaultValues = {
         nickname: useSelector(selectNickName),
@@ -37,128 +30,141 @@ const PersonalDataForm = () => {
     const { setProfileData } = appActions
 
     const {
+        getValues,
         register,
         watch,
-        formState: { errors, isDirty, isValid },
+        formState: { errors },
         handleSubmit,
     } = useForm<FormData>({
         defaultValues: defaultValues,
-        mode: "onChange" || "onTouched" || "onBlur",
+        mode: "onBlur",
     })
     watch()
-    const onSubmit = async (data: FormData) => {
-        dispatch(setProfileData(data))
-        navigate("/personal-data-2")
+
+    const onSubmit = (data: FormData) => {
+        if (Object.keys(errors).length === 0) {
+            dispatch(setProfileData(data))
+            navigate("/personal-data-2")
+        }
     }
 
-    return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={s.inputContainer}>
-                <Label title={"Nickname"} htmlFor={"field-nickname"} subtitle={"Tip"}>
-                    <TextField
-                        {...register("nickname", {
-                            required: "Required field",
-                            maxLength: {
-                                value: 30,
-                                message: "Max length 30 symbols",
-                            },
-                            pattern: {
-                                value: /^[a-zA-Zа-яА-Я0-9]+$/,
-                                message: "Only numbers and letters are allowed",
-                            },
-                        })}
-                        error={!!errors.nickname}
-                        name="nickname"
-                        placeholder={"Nickname"}
-                        id="field-nickname"
-                        variant="outlined"
-                        fullWidth={true}
-                        inputProps={{ sx: textFieldStyle }}
-                    />
-                </Label>
-                <div className={s.error}>{errors?.nickname && <p>{errors?.nickname?.message || "Error"}</p>}</div>
-            </div>
-            <div className={s.inputContainer}>
-                <Label title={"Name"} htmlFor={"field-Name"} subtitle={"Tip"}>
-                    <TextField
-                        {...register("name", {
-                            required: "Required field",
-                            maxLength: {
-                                value: 50,
-                                message: "Max length 50 symbols",
-                            },
-                            pattern: {
-                                value: /^[\p{L}]+$/u,
-                                message: "Only letters",
-                            },
-                        })}
-                        error={!!errors.name}
-                        name="name"
-                        placeholder={"Name"}
-                        id="field-name"
-                        variant="outlined"
-                        fullWidth={true}
-                        inputProps={{ sx: textFieldStyle }}
-                    />
-                </Label>
-                <div className={s.error}>{errors?.name && <p>{errors?.name?.message || "Error"}</p>}</div>
-            </div>
-            <div className={s.inputContainer}>
-                <Label title={"Surname"} htmlFor={"field-surname"} subtitle={"Tip"}>
-                    <TextField
-                        {...register("surname", {
-                            required: "Required field",
-                            maxLength: {
-                                value: 50,
-                                message: "Max length 50 symbols",
-                            },
-                            pattern: {
-                                value: /^[a-zA-Zа-яА-Я]+$/,
-                                message: "Only letters",
-                            },
-                        })}
-                        error={!!errors.surname}
-                        name="surname"
-                        placeholder={"Surname"}
-                        id="field-surname"
-                        variant="outlined"
-                        fullWidth={true}
-                        inputProps={{ sx: textFieldStyle }}
-                    />
-                </Label>
+    const setData = () => {
+        dispatch(setProfileData(getValues()))
+        navigate("/")
+    }
 
-                <div className={s.error}>{errors?.surname && <p>{errors?.surname?.message || "Error"}</p>}</div>
-            </div>
-            <div className={s.inputContainer}>
-                <Label title={"Sex"} htmlFor={"field-sex"}>
-                    <TextField
-                        {...register("sex", { required: "Please enter gender" })}
-                        inputProps={{ sx: textFieldStyle }}
-                        select
-                        fullWidth
-                        defaultValue=""
-                        placeholder={"Не выбрано"}
-                    >
-                        {gender.map((option) => (
-                            <MenuItem key={option} value={option}>
-                                {option}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </Label>
-            </div>
-            <div className={s.buttons}>
-                <Link to={"/"}>
-                    <Button id={"button-back"} variant="outlined">
+    watch()
+
+    return (
+        <>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className={s.inputContainer}>
+                    <Label title={"Nickname"} htmlFor={"field-nickname"} subtitle={"Tip"}>
+                        <TextField
+                            {...register("nickname", {
+                                required: "Required field",
+                                maxLength: {
+                                    value: 30,
+                                    message: "Max length 30 symbols",
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Zа-яА-Я0-9]+$/,
+                                    message: "Only numbers and letters are allowed",
+                                },
+                            })}
+                            error={!!errors.nickname}
+                            name="nickname"
+                            placeholder={"Nickname"}
+                            id="field-nickname"
+                            variant="outlined"
+                            fullWidth={true}
+                        />
+                    </Label>
+                    <div className={s.error}>{errors?.nickname && <p>{errors?.nickname?.message || "Error"}</p>}</div>
+                </div>
+                <div className={s.inputContainer}>
+                    <Label title={"Name"} htmlFor={"field-Name"} subtitle={"Tip"}>
+                        <TextField
+                            {...register("name", {
+                                required: "Required field",
+                                maxLength: {
+                                    value: 50,
+                                    message: "Max length 50 symbols",
+                                },
+                                pattern: {
+                                    value: /^[\p{L}]+$/u,
+                                    message: "Only letters",
+                                },
+                            })}
+                            error={!!errors.name}
+                            name="name"
+                            placeholder={"Name"}
+                            id="field-name"
+                            variant="outlined"
+                            fullWidth={true}
+                        />
+                    </Label>
+                    <div className={s.error}>{errors?.name && <p>{errors?.name?.message || "Error"}</p>}</div>
+                </div>
+                <div className={s.inputContainer}>
+                    <Label title={"Surname"} htmlFor={"field-surname"} subtitle={"Tip"}>
+                        <TextField
+                            {...register("surname", {
+                                required: "Required field",
+                                maxLength: {
+                                    value: 50,
+                                    message: "Max length 50 symbols",
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Zа-яА-Я]+$/,
+                                    message: "Only letters",
+                                },
+                            })}
+                            error={!!errors.surname}
+                            name="surname"
+                            placeholder={"Surname"}
+                            id="field-surname"
+                            variant="outlined"
+                            fullWidth={true}
+                        />
+                    </Label>
+
+                    <div className={s.error}>{errors?.surname && <p>{errors?.surname?.message || "Error"}</p>}</div>
+                </div>
+                <div className={s.inputContainer}>
+                    <Label title={"Sex"} htmlFor={"field-sex"}>
+                        <FormControl fullWidth className={s.formControll}>
+                            <InputLabel className={s.inputSelectLabel} id="select-label">
+                                Не выбрано
+                            </InputLabel>
+                            <Select
+                                {...register("sex", { required: "Required field" })}
+                                labelId="select-label"
+                                error={!!errors.sex}
+                                value={getValues("sex")}
+                                label={null}
+                            >
+                                {gender.map((option) => (
+                                    <MenuItem key={option} value={option}>
+                                        {option}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </Label>
+                    <div className={s.error}>{errors?.sex && <p>{errors?.sex?.message || "Error"}</p>}</div>
+                </div>
+                <div className={s.buttons}>
+                    <Button onClick={() => setData()} id={"button-back"} variant="outlined">
                         Назад
                     </Button>
-                </Link>
 
-                <Button id={"button-next"} variant="contained" disabled={!isValid || !isDirty} type={"submit"}>
-                    Далее
-                </Button>
-            </div>
-        </form>
+                    <Button type={"submit"} id={"button-next"} variant="contained">
+                        Далее
+                    </Button>
+                </div>
+            </form>
+        </>
     )
 }
 

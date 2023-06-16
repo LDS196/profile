@@ -1,7 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { appApi } from "../common/api/common.api"
+import { createAppAsyncThunk } from "../common/utils/create-app-async-thunk"
+import { ProfileDataAction, ProfileType } from "../common/types/types"
 
-const initialState = {
-    error: null as null | string,
+type initialStateType = {
+    isLoading: boolean
+    error: string | null
+    profile: ProfileType
+    isSuccessSubmitProfile: null | boolean
+}
+const initialState: initialStateType = {
+    isLoading: false,
+    error: null,
+    isSuccessSubmitProfile: null as null | boolean,
     profile: {
         phone: "",
         email: "",
@@ -15,7 +26,23 @@ const initialState = {
         about: "",
     },
 }
-export type AppInitialStateType = typeof initialState
+
+const fetchProfile = createAppAsyncThunk<void, void>("app/fetchProfile", async (_, thunkAPI) => {
+    const { dispatch, rejectWithValue, getState } = thunkAPI
+    const profile = getState().app.profile
+    try {
+        const res = await appApi.sendProfile(profile)
+        if (res.data.status === "success") {
+            dispatch(appActions.setStatus({ status: true }))
+        } else {
+            dispatch(appActions.setStatus({ status: false }))
+            return rejectWithValue(null)
+        }
+    } catch (e: any) {
+        dispatch(appActions.setStatus({ status: false }))
+        return rejectWithValue(e.message)
+    }
+})
 
 const slice = createSlice({
     name: "app",
@@ -24,23 +51,45 @@ const slice = createSlice({
         setAppError: (state, action: PayloadAction<{ error: string | null }>) => {
             state.error = action.payload.error
         },
-        setProfileData: (state, action: PayloadAction<ProfileData>) => {
-            console.log("2")
+        setStatus: (state, action: PayloadAction<{ status: boolean | null }>) => {
+            state.isSuccessSubmitProfile = action.payload.status
+        },
+        setProfileData: (state, action: PayloadAction<ProfileDataAction>) => {
             state.profile = { ...state.profile, ...action.payload }
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchProfile.fulfilled, (state, action) => {})
+            .addMatcher(
+                (action) => {
+                    return action.type.endsWith("/pending")
+                },
+                (state) => {
+                    state.isLoading = true
+                }
+            )
+            .addMatcher(
+                (action) => {
+                    return action.type.endsWith("/rejected")
+                },
+                (state, action) => {
+                    const { payload, error } = action
+
+                    state.error = payload ? payload : "Some error occurred"
+                    state.isLoading = false
+                }
+            )
+            .addMatcher(
+                (action) => {
+                    return action.type.endsWith("/fulfilled")
+                },
+                (state) => {
+                    state.isLoading = false
+                }
+            )
+    },
 })
-type ProfileData = {
-    phone?: string
-    email?: string
-    nickname?: string
-    name?: string
-    surname?: string
-    sex?: string
-    advantages?: string[]
-    checkbox?: number[]
-    radio?: number
-    about?: string
-}
+export const appThunks = { fetchProfile }
 export const appReducer = slice.reducer
 export const appActions = slice.actions

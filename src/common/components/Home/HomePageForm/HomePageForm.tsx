@@ -2,7 +2,7 @@ import React from "react"
 import { Button, TextField } from "@mui/material"
 import { useForm } from "react-hook-form"
 import InputMask from "react-input-mask"
-import s from "./FormMainPage.module.scss"
+import s from "./HomePageForm.module.scss"
 import Label from "../../Label/Label"
 import { useDispatch, useSelector } from "react-redux"
 import { appActions } from "../../../../app/app.reducer"
@@ -14,15 +14,8 @@ type FormData = {
     phone: string
     email: string
 }
-const textFieldStyle = {
-    fontFamily: "sans-serif",
-    padding: "13px",
-    fontWeight: 400,
-    fontSize: "14px",
-    lineHeight: "20px",
-}
 
-const FormMainPage = () => {
+const HomePageForm = () => {
     const defaultValues = {
         phone: useSelector(selectPhone),
         email: useSelector(selectEmail),
@@ -33,25 +26,27 @@ const FormMainPage = () => {
 
     const {
         register,
-        formState: { errors, isDirty, isValid },
+        formState: { errors },
         handleSubmit,
     } = useForm<FormData>({
         defaultValues: defaultValues,
-        mode: "onChange" || "onTouched" || "onBlur",
+        mode: "onBlur",
     })
 
-    const onSubmit = (data: FormData) => {
-        const phone = extractNumbersFromString(data.phone)
-        dispatch(setProfileData({ ...data, phone }))
-        navigate("/personal-data")
+    const setData = (data: FormData) => {
+        if (Object.keys(errors).length === 0) {
+            const phone = extractNumbersFromString(data.phone)
+            dispatch(setProfileData({ ...data, phone }))
+            navigate("/personal-data")
+        }
     }
-
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={s.form}>
             <div className={s.inputContainer}>
                 <Label title={"Номер телефона"} htmlFor={"field-phone"}>
                     <div className={s.inputMask}>
                         <InputMask
+                            defaultValue={defaultValues.phone}
                             placeholder={"+7 (999) 999-99-99"}
                             mask="+7 (999) 999-99-99"
                             {...register("phone", {
@@ -62,6 +57,7 @@ const FormMainPage = () => {
                                 },
                             })}
                         />
+                        <div className={s.error}>{errors?.phone && <p>{errors?.phone?.message || "Error"}</p>}</div>
                     </div>
                 </Label>
             </div>
@@ -75,23 +71,21 @@ const FormMainPage = () => {
                                 message: "Invalid email.",
                             },
                         })}
-                        error={!!errors.email}
                         name="email"
                         placeholder={"tim.jennings@example.com "}
                         id="field-email"
                         variant="outlined"
                         fullWidth={true}
-                        inputProps={{ sx: textFieldStyle }}
                     />
                 </Label>
                 <div className={s.error}>{errors?.email && <p>{errors?.email?.message || "Error"}</p>}</div>
             </div>
 
-            <Button id={"button-start"} variant="contained" disabled={!isValid || !isDirty} type={"submit"}>
+            <Button id={"button-start"} variant="contained" onClick={handleSubmit(setData)}>
                 Начать
             </Button>
-        </form>
+        </div>
     )
 }
 
-export default FormMainPage
+export default HomePageForm

@@ -1,6 +1,3 @@
-form {
-}
-
 .inputContainer {
     margin-bottom: 65px;
 }
@@ -16,4 +13,10 @@ form {
     height: 10px;
     color: red;
     margin-bottom: 30px;
+}
+.inputSelectLabel {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.48);
 }
