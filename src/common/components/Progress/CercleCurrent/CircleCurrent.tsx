@@ -3,18 +3,12 @@ import s from "./CircleCurrent.module.scss"
 
 type Props = {
     number: number
-    colorNumber: string
 }
-const CircleCurrent = ({ number, colorNumber }: Props) => {
-    const style = {
-        color: colorNumber,
-    }
+const CircleCurrent = ({ number }: Props) => {
     return (
         <div className={s.circle}>
             <div className={s.circleInner}></div>
-            <div style={style} className={s.number}>
-                {number}
-            </div>
+            <div className={s.number}>{number}</div>
         </div>
     )
 }

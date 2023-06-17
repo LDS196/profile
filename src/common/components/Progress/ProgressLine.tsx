@@ -1,23 +1,27 @@
-import React from "react"
+import React, { ReactNode } from "react";
 import s from "./ProgressLine.module.scss"
-import CircleTick from "./CircleTick/CircleTick"
-import CircleCurrent from "./CercleCurrent/CircleCurrent"
-import CircleEmpty from "./CercleEmpty/CircleEmpty"
 
-const ProgressLine = () => {
+
+type Props={
+   backgroundColors:string[]
+  children: ReactNode[]
+}
+const ProgressLine = ({backgroundColors,children}:Props) => {
+
+
     return (
         <div className={s.progress}>
             <div className={s.line}>
-                <div className={s.first__inner__line}></div>
-                <div className={s.second__inner__line}></div>
+                <div className={s.line_item} style={{background:backgroundColors[0]}}></div>
+                <div className={s.line_item} style={{background:backgroundColors[1]}}></div>
                 <div className={s.first__circle}>
-                    <CircleTick number={1} colorNumber={"#5558FA"} />
+                  {children[0]}
                 </div>
                 <div className={s.second__circle}>
-                    <CircleCurrent number={2} colorNumber={"#5558FA"} />
+                  {children[1]}
                 </div>
                 <div className={s.third__circle}>
-                    <CircleEmpty number={3} colorNumber={"#666666"} />
+                  {children[2]}
                 </div>
             </div>
         </div>

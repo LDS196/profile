@@ -23,6 +23,6 @@ export type ProfileDataAction = {
     sex?: string
     advantages?: string[]
     checkbox?: number[]
-    radio?: number
+    radio?: number | null
     about?: string
 }

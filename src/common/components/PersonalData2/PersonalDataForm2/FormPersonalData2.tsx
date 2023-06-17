@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectAdvantages, selectCheckbox, selectRadio } from "../../../../app/app.select"
 import { createArrayWithValue } from "../../../utils/create-array-with-value"
 import { appActions } from "../../../../app/app.reducer"
+import { getData } from "../../../utils/get-data"
 
-type FormData = {
+export type FormData = {
     advantages: { value: string }[]
     radioValue: null | number
     checkboxValue: number[]
@@ -46,23 +47,13 @@ export const FormPersonalData2 = () => {
 
     const onSubmit = (data: FormData) => {
         if (Object.keys(errors).length === 0) {
-            const advantages = data.advantages.map((el) => el.value)
-            const formData = {
-                radio: Number(data.radioValue),
-                checkbox: data.checkboxValue,
-                advantages,
-            }
+            const formData = getData(data)
             dispatch(setProfileData(formData))
             navigate("/personal-data-3")
         }
     }
     const setData = () => {
-        const advantages = getValues("advantages").map((el) => el.value)
-        const formData = {
-            radio: Number(getValues("radioValue")),
-            checkbox: getValues("checkboxValue"),
-            advantages,
-        }
+        const formData = getData(getValues())
         dispatch(setProfileData(formData))
         navigate("/personal-data")
     }

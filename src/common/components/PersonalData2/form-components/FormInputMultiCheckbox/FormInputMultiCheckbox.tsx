@@ -42,6 +42,8 @@ export const FormInputMultiCheckbox: React.FC<FormInputProps> = ({ name, control
                 {options.map((option) => {
                     return (
                         <FormControlLabel
+                            key={option.value}
+                            label={option.label}
                             control={
                                 <Controller
                                     name={name}
@@ -56,8 +58,6 @@ export const FormInputMultiCheckbox: React.FC<FormInputProps> = ({ name, control
                                     control={control}
                                 />
                             }
-                            label={option.label}
-                            key={option.value}
                         />
                     )
                 })}

@@ -25,6 +25,9 @@ textarea {
 
     &:focus {
         border: 1px solid #1976d2;
+        &.inputError {
+            border: 1px solid red;
+        }
     }
     &:invalid {
         border: 1px solid red;
@@ -35,6 +38,7 @@ textarea {
 }
 
 .error {
+    margin-top: -3px;
     font-size: 10px;
     height: 10px;
     color: red;

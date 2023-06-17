@@ -4,18 +4,12 @@ import iconTick from "../../../../assets/icons/icon-tick.svg"
 
 type Props = {
     number: number
-    colorNumber: string
 }
-const CircleTick = ({ number, colorNumber }: Props) => {
-    const style = {
-        color: colorNumber,
-    }
+const CircleTick = ({ number }: Props) => {
     return (
         <div className={s.circleTick}>
             <img src={iconTick} alt="" />
-            <div style={style} className={s.number}>
-                {number}
-            </div>
+            <div className={s.number}>{number}</div>
         </div>
     )
 }
