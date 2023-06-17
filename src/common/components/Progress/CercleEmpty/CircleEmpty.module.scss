@@ -1,0 +1,15 @@
+.circle {
+    width: 16px;
+    height: 16px;
+    background: #a6a6a6;
+    border-radius: 50%;
+    position: relative;
+}
+.number {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    position: absolute;
+    top: 25px;
+    left: 4px;
+}

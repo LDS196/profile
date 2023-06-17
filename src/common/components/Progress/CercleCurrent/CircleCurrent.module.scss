@@ -1,0 +1,24 @@
+.circle {
+    width: 16px;
+    height: 16px;
+    background: #5558fa;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.circleInner {
+    border-radius: 50%;
+    background: white;
+    width: 3.2px;
+    height: 3.2px;
+}
+.number {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    position: absolute;
+    top: 25px;
+    left: 4px;
+}
