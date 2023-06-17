@@ -54,7 +54,6 @@ const PersonalDataForm = () => {
     }
 
     watch()
-    console.log(errors)
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
