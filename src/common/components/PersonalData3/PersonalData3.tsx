@@ -9,7 +9,6 @@ import ProgressLine from "../Progress/ProgressLine"
 import CircleCurrent from "../Progress/CercleCurrent/CircleCurrent"
 import CircleTick from "../Progress/CircleTick/CircleTick"
 
-
 const PersonalData3 = () => {
     const isSuccessStatus = useSelector(selectIsSuccessSubmitProfile)
     return (
