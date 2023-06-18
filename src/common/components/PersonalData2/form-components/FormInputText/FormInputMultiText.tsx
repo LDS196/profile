@@ -5,12 +5,18 @@ import { Button, FormLabel, TextField } from "@mui/material"
 import s from "./FormInputMultiText.module.scss"
 import DeleteIcon from "@mui/icons-material/Delete"
 
+const style = {
+    color: "#333333",
+}
+
 export const FormInputMultiText = ({ name, errors, control, register, label }: FormInputProps) => {
     const { fields, append, remove } = useFieldArray({ control, name: name })
 
     return (
         <>
-            <FormLabel component="legend">{label}</FormLabel>
+            <FormLabel style={style} component="legend">
+                {label}
+            </FormLabel>
             <ul className={s.inputList}>
                 {fields.map((item, index) => {
                     return (

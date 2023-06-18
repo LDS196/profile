@@ -17,7 +17,9 @@ const options = [
         value: 3,
     },
 ]
-
+const style = {
+    color: "#333333",
+}
 export const FormInputRadio: React.FC<FormInputProps> = ({ name, control, label }) => {
     const generateRadioOptions = () => {
         return options.map((singleOption) => (
@@ -32,7 +34,9 @@ export const FormInputRadio: React.FC<FormInputProps> = ({ name, control, label 
 
     return (
         <FormControl component="fieldset">
-            <FormLabel component="legend">{label}</FormLabel>
+            <FormLabel style={style} component="legend">
+                {label}
+            </FormLabel>
             <Controller
                 name={name}
                 control={control}

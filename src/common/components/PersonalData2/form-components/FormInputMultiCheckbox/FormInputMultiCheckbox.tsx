@@ -34,9 +34,14 @@ export const FormInputMultiCheckbox: React.FC<FormInputProps> = ({ name, control
         setValue(name, selectedItems)
     }, [selectedItems])
 
+    const style = {
+        color: "#333333",
+    }
     return (
         <FormControl size={"small"} variant={"outlined"}>
-            <FormLabel component="legend">{label}</FormLabel>
+            <FormLabel style={style} component="legend">
+                {label}
+            </FormLabel>
 
             <div style={{ display: "flex", flexDirection: "column" }}>
                 {options.map((option) => {

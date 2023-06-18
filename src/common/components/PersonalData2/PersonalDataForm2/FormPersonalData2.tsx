@@ -71,10 +71,6 @@ export const FormPersonalData2 = () => {
             </div>
 
             <div className={s.inputContainer}>
-                <FormInputRadio name={"radioValue"} control={control} label={"Radio group"} />
-            </div>
-
-            <div className={s.inputContainer}>
                 <FormInputMultiCheckbox
                     checkboxValue={defaultValues.checkboxValue}
                     control={control}
@@ -82,6 +78,10 @@ export const FormPersonalData2 = () => {
                     name={"checkboxValue"}
                     label={"Checkbox group"}
                 />
+            </div>
+
+            <div className={s.inputContainer}>
+                <FormInputRadio name={"radioValue"} control={control} label={"Radio group"} />
             </div>
 
             <div className={s.buttons}>
