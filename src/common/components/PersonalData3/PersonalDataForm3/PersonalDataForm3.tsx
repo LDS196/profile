@@ -42,11 +42,10 @@ const PersonalDataForm3 = () => {
         dispatch(setProfileData(getValues()))
         navigate("/personal-data-2")
     }
-
     watch()
-
+const counter = getValues("about").length
     const styleError = errors.about ? s.inputError : ""
-    console.log(errors.about)
+
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -66,6 +65,7 @@ const PersonalDataForm3 = () => {
                             id="field-about"
                         />
                     </Label>
+                    <div className={s.counter}>{counter}</div>
                     <div className={s.error}>{errors?.about && <p>{errors?.about?.message || "Error"}</p>}</div>
                 </div>
 

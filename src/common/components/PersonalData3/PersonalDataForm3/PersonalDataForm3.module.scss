@@ -13,6 +13,7 @@ textarea {
     border-radius: 4px;
     font-size: 16px;
     outline: none;
+    resize: none;
     &::placeholder {
         font-weight: 400;
         font-size: 14px;
@@ -33,9 +34,6 @@ textarea {
         border: 1px solid red;
     }
 }
-.inputError {
-    border: 1px solid red;
-}
 
 .error {
     margin-top: -3px;
@@ -43,4 +41,13 @@ textarea {
     height: 10px;
     color: red;
     margin-bottom: 30px;
+}
+.inputContainer{
+    position: relative;
+}
+.counter{
+    position: absolute;
+    right: 8px;
+    font-size: 14px;
+    bottom: 10px;
 }
