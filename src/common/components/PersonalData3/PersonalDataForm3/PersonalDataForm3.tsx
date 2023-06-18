@@ -43,7 +43,7 @@ const PersonalDataForm3 = () => {
         navigate("/personal-data-2")
     }
     watch()
-const counter = getValues("about").length
+    const counter = getValues("about").length
     const styleError = errors.about ? s.inputError : ""
 
     return (
@@ -65,7 +65,7 @@ const counter = getValues("about").length
                             id="field-about"
                         />
                     </Label>
-                    <div className={s.counter}>{counter}</div>
+                    <div className={s.counter}>{!!getValues("about").length && counter}</div>
                     <div className={s.error}>{errors?.about && <p>{errors?.about?.message || "Error"}</p>}</div>
                 </div>
 

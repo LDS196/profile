@@ -1,6 +1,6 @@
 import React from "react"
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
-import { useForm } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 import s from "./PersonalDataForm.module.scss"
 import { useDispatch, useSelector } from "react-redux"
 import { appActions } from "../../../../app/app.reducer"
@@ -31,6 +31,7 @@ const PersonalDataForm = () => {
 
     const {
         getValues,
+        control,
         register,
         watch,
         formState: { errors },
@@ -53,7 +54,6 @@ const PersonalDataForm = () => {
         navigate("/")
     }
 
-    watch()
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -136,22 +136,34 @@ const PersonalDataForm = () => {
                             <InputLabel className={s.inputSelectLabel} id="select-label">
                                 Не выбрано
                             </InputLabel>
-                            <Select
-                                {...register("sex", { required: "Required field" })}
-                                labelId="select-label"
-                                error={!!errors.sex}
-                                value={getValues("sex")}
-                                label={null}
-                            >
-                                {gender.map((option) => (
-                                    <MenuItem key={option} value={option}>
-                                        {option}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+                            <Controller
+                                name="sex"
+                                control={control}
+                                rules={{
+                                    required: true,
+                                }}
+                                render={({ field: { onChange, value } }) => (
+                                    <Select
+                                        {...register("sex", { required: "Required field" })}
+                                        onChange={(val) => onChange(val.target.value)}
+                                        labelId="select-label"
+                                        error={!!errors.sex && !value}
+                                        value={value ? value : ""}
+                                        label={null}
+                                    >
+                                        {gender.map((option) => (
+                                            <MenuItem key={option} value={option}>
+                                                {option}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                )}
+                            />
                         </FormControl>
                     </Label>
-                    <div className={s.error}>{errors?.sex && <p>{errors?.sex?.message || "Error"}</p>}</div>
+                    <div className={s.error}>
+                        {errors?.sex && !getValues("sex") && <p>{errors?.sex?.message || "Error"}</p>}
+                    </div>
                 </div>
                 <div className={s.buttons}>
                     <Button onClick={() => setData()} id={"button-back"} variant="outlined">
