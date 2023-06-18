@@ -1,18 +1,21 @@
 .inputContainer {
-    margin-bottom: 65px;
+    margin-bottom: 52px;
 }
 
 .buttons {
+    margin-top: 12px;
     padding-top: 35px;
     display: flex;
     justify-content: space-between;
 }
 
 .error {
-    font-size: 10px;
-    height: 10px;
-    color: red;
-    margin-bottom: 30px;
+    margin-top: 8px;
+    height: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.48);
 }
 .inputSelectLabel {
     font-weight: 400;

@@ -36,11 +36,12 @@ textarea {
 }
 
 .error {
-    margin-top: -3px;
-    font-size: 10px;
-    height: 10px;
-    color: red;
-    margin-bottom: 30px;
+    margin-top: 5px;
+    height: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.48);
 }
 .inputContainer {
     position: relative;
@@ -49,5 +50,5 @@ textarea {
     position: absolute;
     right: 20px;
     font-size: 12px;
-    bottom: 10px;
+    bottom: 26px;
 }

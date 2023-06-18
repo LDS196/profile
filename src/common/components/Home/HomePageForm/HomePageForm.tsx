@@ -57,9 +57,9 @@ const HomePageForm = () => {
                                 },
                             })}
                         />
-                        <div className={s.error}>{errors?.phone && <p>{errors?.phone?.message || "Error"}</p>}</div>
                     </div>
                 </Label>
+                <div className={s.error}>{errors?.phone && <p>{errors?.phone?.message || "Error"}</p>}</div>
             </div>
             <div className={s.inputContainer}>
                 <Label title={"Email"} htmlFor={"field-email"}>
@@ -80,10 +80,11 @@ const HomePageForm = () => {
                 </Label>
                 <div className={s.error}>{errors?.email && <p>{errors?.email?.message || "Error"}</p>}</div>
             </div>
-
-            <Button id={"button-start"} variant="contained" onClick={handleSubmit(setData)}>
-                Начать
-            </Button>
+            <div className={s.button}>
+                <Button id={"button-start"} variant="contained" onClick={handleSubmit(setData)}>
+                    Начать
+                </Button>
+            </div>
         </div>
     )
 }

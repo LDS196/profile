@@ -85,7 +85,9 @@ export const FormPersonalData2 = () => {
             </div>
 
             <div className={s.buttons}>
-                <Button onClick={setData}>Назад</Button>
+                <Button onClick={setData} variant="outlined">
+                    Назад
+                </Button>
                 <Button variant={"contained"} type={"submit"}>
                     Далее
                 </Button>
