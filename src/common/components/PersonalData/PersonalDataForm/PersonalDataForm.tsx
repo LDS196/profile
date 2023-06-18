@@ -133,8 +133,8 @@ const PersonalDataForm = () => {
                 <div className={s.inputContainer}>
                     <Label title={"Sex"} htmlFor={"field-sex"}>
                         <FormControl fullWidth className={s.formControll}>
-                            <InputLabel className={s.inputSelectLabel} id="select-label">
-                                Не выбрано
+                            <InputLabel shrink={false} className={s.inputSelectLabel} id="select-label">
+                                {!getValues("sex") && "Не выбрано"}
                             </InputLabel>
                             <Controller
                                 name="sex"
