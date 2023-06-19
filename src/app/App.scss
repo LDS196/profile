@@ -3,6 +3,7 @@
     box-sizing: border-box;
     padding: 0;
 }
+
 .App {
     color: #333333;
     background: #f4f4f5;
@@ -12,6 +13,7 @@
     padding: 24px 10px 0 10px;
     min-height: 2000px;
 }
+
 .App-container {
     background: #ffffff;
     border-radius: 12px 12px 0 0;
@@ -19,18 +21,32 @@
     max-width: 900px;
     margin: 0 auto;
 }
+
 ul {
     list-style-type: none;
 }
+
 a {
     text-decoration: none;
     color: inherit;
 }
+
 button {
     background: transparent;
     border: none;
     cursor: pointer;
 }
+
 .form_container {
     padding: 66px 110px 80px 110px;
+
+    @media (max-width: 992px) {
+        padding: 50px 83px 60px 83px;
+    }
+    @media (max-width: 768px) {
+        padding: 33px 55px 40px 55px;
+    }
+    @media (max-width: 480px) {
+        padding: 16px 16px 20px 16px;
+    }
 }
