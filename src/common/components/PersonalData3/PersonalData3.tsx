@@ -1,6 +1,5 @@
 import React from "react"
 import PersonalDataForm3 from "./PersonalDataForm3/PersonalDataForm3"
-import s from "./PersonalData3.module.scss"
 import { useSelector } from "react-redux"
 import { selectIsSuccessSubmitProfile } from "../../../app/app.select"
 import ModalWindowStatusSubmitError from "../ModalWindowStatusSubmit/ModalWindowStatusSubmitError/ModalWindowStatusSubmitError"
@@ -12,7 +11,7 @@ import CircleTick from "../Progress/CircleTick/CircleTick"
 const PersonalData3 = () => {
     const isSuccessStatus = useSelector(selectIsSuccessSubmitProfile)
     return (
-        <div className={s.block}>
+        <div className="form_container">
             <ProgressLine
                 backgroundColors={["#5558fa", "#5558fa"]}
                 children={[

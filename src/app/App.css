@@ -31,3 +31,6 @@ button {
     border: none;
     cursor: pointer;
 }
+.form_container {
+    padding: 66px 110px 80px 110px;
+}

@@ -1,5 +1,4 @@
 import React from "react"
-import s from "./PersonalData2.module.scss"
 import { FormPersonalData2 } from "./PersonalDataForm2/FormPersonalData2"
 import ProgressLine from "../Progress/ProgressLine"
 import CircleCurrent from "../Progress/CercleCurrent/CircleCurrent"
@@ -8,7 +7,7 @@ import CircleTick from "../Progress/CircleTick/CircleTick"
 
 const PersonalData2 = () => {
     return (
-        <div className={s.block}>
+        <div className="form_container">
             <ProgressLine
                 backgroundColors={["#5558fa", "rgba(0, 0, 0, 0.08)"]}
                 children={[
